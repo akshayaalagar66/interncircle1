@@ -1,0 +1,124 @@
+
+# Interactive Calculator & Unit Converter
+
+def calculator():
+    print("\n--- Basic Calculator ---")
+
+    while True:
+        try:
+            num1 = float(input("Enter first number: "))
+            num2 = float(input("Enter second number: "))
+            break
+        except ValueError:
+            print("Invalid input! Please enter numbers only.")
+
+    print("\n1. Addition (+)")
+    print("2. Subtraction (-)")
+    print("3. Multiplication (*)")
+    print("4. Division (/)")
+
+    while True:
+        choice = input("Choose an operation (1-4): ")
+
+        if choice in ["1", "2", "3", "4"]:
+            break
+        else:
+            print("Invalid choice! Enter 1, 2, 3, or 4.")
+
+    if choice == "1":
+        print("Result:", num1 + num2)
+    elif choice == "2":
+        print("Result:", num1 - num2)
+    elif choice == "3":
+        print("Result:", num1 * num2)
+    elif choice == "4":
+        if num2 == 0:
+            print("Error! Cannot divide by zero.")
+        else:
+            print("Result:", num1 / num2)
+
+
+def unit_converter():
+    print("\n--- Unit Converter ---")
+    print("1. Kilometers to Miles")
+    print("2. Celsius to Fahrenheit")
+
+    while True:
+        choice = input("Choose conversion (1-2): ")
+
+        if choice in ["1", "2"]:
+            break
+        else:
+            print("Invalid choice! Enter 1 or 2.")
+
+    while True:
+        try:
+            value = float(input("Enter the value to convert: "))
+            break
+        except ValueError:
+            print("Invalid input! Please enter a number.")
+
+    if choice == "1":
+        miles = value * 0.621371
+        print(value, "km =", round(miles, 2), "miles")
+    elif choice == "2":
+        fahrenheit = (value * 9 / 5) + 32
+        print(value, "°C =", round(fahrenheit, 2), "°F")
+
+
+def currency_converter():
+    print("\n--- Currency Converter ---")
+    print("1. INR to USD (sample rate)")
+    print("2. USD to INR (sample rate)")
+
+    # Example rate only; exchange rates change daily.
+    inr_to_usd = 1 / 85
+    usd_to_inr = 85
+
+    while True:
+        choice = input("Choose conversion (1-2): ")
+
+        if choice in ["1", "2"]:
+            break
+        else:
+            print("Invalid choice! Enter 1 or 2.")
+
+    while True:
+        try:
+            amount = float(input("Enter amount: "))
+            if amount < 0:
+                print("Amount cannot be negative.")
+                continue
+            break
+        except ValueError:
+            print("Invalid input! Please enter a number.")
+
+    if choice == "1":
+        print("Converted amount: $", round(amount * inr_to_usd, 2))
+    else:
+        print("Converted amount: ₹", round(amount * usd_to_inr, 2))
+
+
+# Main program
+while True:
+    print("\n==============================")
+    print(" INTERACTIVE CALCULATOR")
+    print("==============================")
+    print("1. Basic Calculator")
+    print("2. Unit Converter")
+    print("3. Currency Converter")
+    print("4. Exit")
+
+    option = input("Enter your choice (1-4): ")
+
+    if option == "1":
+        calculator()
+    elif option == "2":
+        unit_converter()
+    elif option == "3":
+        currency_converter()
+    elif option == "4":
+        print("Thank you for using the program!")
+        break
+    else:
+        print("Invalid choice! Please select 1, 2, 3, or 4.")
